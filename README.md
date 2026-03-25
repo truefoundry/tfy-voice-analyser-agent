@@ -77,6 +77,18 @@ This gives you:
 
 ---
 
+## Customizing Models
+
+Model names in `agent.py` must match what's registered on your TFY AI Gateway. Update these to match your setup:
+
+```python
+llm("flash/gemini-3-flash")                        # sentiment
+llm("bedrock/global.anthropic.claude-sonnet-4-6")   # action items + planner
+llm("openai-main/gpt-5-mini")                       # coaching
+```
+
+---
+
 ## Files
 
 ```
