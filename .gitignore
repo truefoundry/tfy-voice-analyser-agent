@@ -5,3 +5,4 @@ __pycache__/
 uv.lock
 .langgraph-data/
 .langgraph_api/
+DEMO.md
