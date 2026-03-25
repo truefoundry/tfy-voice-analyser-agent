@@ -80,6 +80,10 @@ This gives you:
 - **Studio**: https://smith.langchain.com/studio/?baseUrl=http://localhost:8888
 - **Docs**: http://localhost:8888/docs
 
+### Try it out
+
+Open [LangGraph Studio](https://smith.langchain.com/studio/?baseUrl=http://localhost:8888) and send any message — the agent will automatically load the included `sample_transcript.txt` (a ~8 min support call) and run the full analysis pipeline.
+
 ---
 
 ## What It Does
