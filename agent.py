@@ -17,6 +17,7 @@ GATEWAY_KEY = os.environ["TFY_API_KEY"]
 MCP_URL = os.environ.get("TFY_MCP_GATEWAY_URL", "")
 MCP_KEY = os.environ.get("TFY_MCP_GATEWAY_KEY", "")
 LINEAR_PROJECT = os.environ.get("LINEAR_PROJECT", "")
+LINEAR_TEAM = os.environ.get("LINEAR_TEAM", "")
 
 TRANSCRIPT_PATH = Path(__file__).parent / "sample_transcript.txt"
 
@@ -65,8 +66,8 @@ def build_subagents(linear_tools: list) -> list:
         },
         {
             "name": "action-items-creator",
-            "description": "Extract action items from a call transcript and create Linear issues for each one",
-            "model": llm("bedrock/global.anthropic.claude-sonnet-4-6"),
+            "description": "Extract action items from a call transcript and create up to 2 Linear issues for the top priorities",
+            "model": llm("bedrock/global.anthropic.claude-haiku-4-5-20251001-v1-0"),
             "tools": linear_tools,
             "system_prompt": (
                 "You are an expert at extracting actionable items from conversations "
@@ -74,13 +75,18 @@ def build_subagents(linear_tools: list) -> list:
                 "Given a call transcript:\n"
                 "1. Extract all action items — who committed to what, with deadlines if mentioned\n"
                 "2. Extract open questions and decisions made\n"
-                "3. For EACH action item, create a Linear issue using the save_issue tool:\n"
+                "3. Pick up to 2 of the most important action items and create Linear issues for them:\n"
+                "   - Use the save_issue tool for each\n"
                 "   - Title: clear, concise action item\n"
-                "   - Description: full context from the call, owner, deadline\n"
+                "   - Description: use proper markdown with real line breaks (not literal \\n). Use headers, bullet points, and paragraphs.\n"
+                + (f"   - Team: '{LINEAR_TEAM}' (REQUIRED for every issue)\n"
+                   if LINEAR_TEAM else "")
                 + (f"   - Project: '{LINEAR_PROJECT}'\n"
-                   f"   IMPORTANT: Always create issues in the '{LINEAR_PROJECT}' project.\n"
                    if LINEAR_PROJECT else "")
-                + "4. Return a summary of all action items and the Linear issues created\n\n"
+                + "   IMPORTANT: Create AT MOST 2 Linear issues — only for the top priorities.\n"
+                "4. Return:\n"
+                "   - Full list of all action items extracted\n"
+                "   - The 2 Linear issue links (URL from the save_issue response)\n\n"
                 "Tag each item with the speaker. Be concise."
             ) if linear_tools else (
                 "You are an expert at extracting actionable items from conversations.\n"
