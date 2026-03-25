@@ -1,0 +1,101 @@
+[00:00] Agent: Hi, thanks for calling TechFlow support. This is Sarah. How can I help you today?
+
+[00:05] Customer: Hey Sarah, this is Mike from Greenleaf Solutions. We just signed up for the Sales CRM plan and I'm trying to get everything set up for my team, but honestly I'm a bit lost on where to start.
+
+[00:15] Agent: No worries at all, Mike! Congrats on getting started. I'll walk you through the whole setup. How big is your sales team?
+
+[00:22] Customer: We've got eight reps and two managers. We were using spreadsheets before this, so... yeah, it's time for an upgrade.
+
+[00:30] Agent: Ha, you're going to love the difference. Okay so first things first — have you set up your organization profile yet? That's under Settings, then Company Profile.
+
+[00:40] Customer: Uh, let me check... yeah no, it still says "Your Company Name" in there.
+
+[00:45] Agent: Perfect, let's start there. Go ahead and fill in your company name, address, and upload your logo. The logo shows up on all your email templates and quotes, so it's worth doing now.
+
+[00:55] Customer: Okay, done. Greenleaf Solutions, logo uploaded. What's next?
+
+[01:02] Agent: Great. Next we'll set up your sales pipeline. Go to Settings, then Pipeline. You should see a default pipeline with stages like Lead, Qualified, Proposal, and Closed Won.
+
+[01:12] Customer: Yep, I see that.
+
+[01:14] Agent: Now, does that match your actual sales process or do you have different stages?
+
+[01:18] Customer: We actually have a demo stage between Qualified and Proposal. And we also do a technical review before closing.
+
+[01:26] Agent: Easy to customize. Click the plus icon between Qualified and Proposal, name it "Demo Scheduled." Then add another one before Closed Won called "Technical Review." You can drag them to reorder if needed.
+
+[01:38] Customer: Okay... Demo Scheduled... Technical Review... got it. Oh nice, I can set colors too?
+
+[01:45] Agent: Yep! Color coding helps your team see deal progress at a glance on the board view. I'd recommend using warmer colors as deals get closer to closing — like green for Closed Won.
+
+[01:55] Customer: Makes sense. Done.
+
+[01:58] Agent: Perfect. Now let's get your team added. Go to Settings, then Team Members. You can invite people by email. For your managers, you'll want to set them as "Admin" role, and your reps as "Sales Rep" role.
+
+[02:12] Customer: What's the difference in permissions?
+
+[02:15] Agent: Good question. Sales Reps can manage their own deals, contacts, and activities. Admins can see everyone's pipeline, reassign deals, run reports, and manage settings. There's also a "Manager" role that's in between — they can see their team's data but can't change system settings.
+
+[02:30] Customer: Oh, the Manager role sounds perfect for my two team leads actually. Let me add everyone... okay, I'm sending out ten invites now.
+
+[02:40] Agent: Great. They'll get an email with a setup link. Now while we wait on that — do you want to set up your deal fields? This is where you customize what info your reps capture for each deal.
+
+[02:52] Customer: Yeah, we definitely need some custom fields. We need "Product Line" — we sell three different products. And "Contract Length" since we do annual and multi-year deals.
+
+[03:05] Agent: Go to Settings, then Custom Fields, then select the Deals object. Click "Add Field." For Product Line, choose "Dropdown" as the type, then add your three products as options. For Contract Length, you could do a dropdown with "Annual," "2-Year," "3-Year" or just use a number field.
+
+[03:22] Customer: Dropdown for both makes sense so the data stays clean. Okay... Product Line with Standard, Professional, and Enterprise. Contract Length with Annual, 2-Year, and 3-Year.
+
+[03:35] Agent: Smart move keeping it as dropdowns. That'll make your reports way more useful later. You can also mark fields as "Required" if you want to make sure reps always fill them in before moving a deal forward.
+
+[03:45] Customer: Oh yeah, let me make Product Line required. We've had issues before where reps don't log which product they're selling.
+
+[03:52] Agent: Totally understand. Now do you have existing customer data you want to import? Contacts, companies, that sort of thing?
+
+[03:58] Customer: Yeah, we've got about two thousand contacts in a CSV from our old spreadsheet system. Is that straightforward to import?
+
+[04:06] Agent: Very straightforward. Go to Contacts, then click the Import button in the top right. Upload your CSV and you'll get a mapping screen where you match your columns to our fields. The system handles duplicates automatically — it matches on email address.
+
+[04:20] Customer: What if some of our data is messy? Like some contacts have company names slightly different — "Greenleaf" versus "Greenleaf Solutions"?
+
+[04:28] Agent: Good call. I'd recommend cleaning up the company names in your CSV before importing. But if you do get duplicates, we have a merge tool under Contacts, then Duplicates. It uses fuzzy matching to find likely duplicates and lets you merge them with one click.
+
+[04:42] Customer: Okay cool, I'll clean up the CSV first and import tomorrow. What about email integration? My team uses Gmail.
+
+[04:50] Agent: Perfect, we have native Gmail integration. Each rep connects their own Gmail account under their profile settings. Once connected, emails to and from contacts are automatically logged on the contact's timeline. They can also send emails directly from the CRM.
+
+[05:05] Customer: Does it sync both ways?
+
+[05:08] Agent: Yes — emails sent from Gmail show up in the CRM, and emails sent from the CRM show up in their Gmail sent folder. Calendar events sync too, so when a rep books a meeting it appears on the deal timeline.
+
+[05:20] Customer: That's huge. My team's biggest complaint with spreadsheets was having to manually log every interaction.
+
+[05:27] Agent: Yeah, that's a game changer. One more thing I'd recommend setting up now — your email templates. Go to Templates in the sidebar. You can create templates for common emails like intro outreach, follow-ups, and proposal sends. Reps can use them with one click and personalize before sending.
+
+[05:42] Customer: That's great. We'll definitely set those up. Quick question — can I set up automated reminders? Like if a deal sits in one stage too long?
+
+[05:52] Agent: Absolutely. Go to Automations in the sidebar. You can create a rule like "If a deal stays in Demo Scheduled for more than 7 days, send the rep a reminder email and notify their manager." We also have automations for things like auto-assigning new leads based on territory.
+
+[06:08] Customer: Oh wow, territory-based assignment would be perfect. We split by region — West, Central, and East.
+
+[06:15] Agent: Nice. You can set that up under Automations, then Lead Assignment. Create three rules based on the contact's state or zip code, and assign each to the right rep or round-robin within a team. Want me to walk you through creating one?
+
+[06:28] Customer: Actually, I think I can figure it out from here. You've been super helpful. Let me just recap what I need to do — finish inviting the team, import our contacts after cleaning the CSV, have everyone connect Gmail, and set up the automations.
+
+[06:42] Agent: That's a perfect summary. I'd also add: set up your email templates and maybe play around with the reporting dashboard — it's under Analytics. You can build custom dashboards showing pipeline value, conversion rates, rep performance, all that good stuff.
+
+[06:55] Customer: Oh right, my CEO is going to want a dashboard for sure. I'll check that out.
+
+[07:00] Agent: One last thing — we have a getting started guide I'll email you after this call. It covers everything we talked about with screenshots. And if your team needs training, we do free 30-minute onboarding sessions. I can schedule one for your group if you'd like.
+
+[07:14] Customer: That would be amazing actually. Can we do it next Tuesday afternoon? Like 2 PM Pacific?
+
+[07:20] Agent: Let me check... yes, Tuesday at 2 PM Pacific works. I'll send a calendar invite to your email. It'll be a live session where your team can ask questions.
+
+[07:30] Customer: Perfect. Sarah, you've been awesome. This was way less painful than I expected.
+
+[07:35] Agent: Ha, glad to hear it! That's what we're here for. You've got my direct line if anything comes up before Tuesday. Welcome aboard, Mike!
+
+[07:42] Customer: Thanks Sarah, talk to you Tuesday. Bye!
+
+[07:45] Agent: Bye, Mike! Have a great rest of your day.
