@@ -17,6 +17,7 @@ GATEWAY_KEY = os.environ["TFY_API_KEY"]
 MCP_URL = os.environ.get("TFY_MCP_GATEWAY_URL", "")
 MCP_KEY = os.environ.get("TFY_MCP_GATEWAY_KEY", "")
 LINEAR_PROJECT = os.environ.get("LINEAR_PROJECT", "")
+LINEAR_TEAM = os.environ.get("LINEAR_TEAM", "")
 
 TRANSCRIPT_PATH = Path(__file__).parent / "sample_transcript.txt"
 
@@ -78,8 +79,9 @@ def build_subagents(linear_tools: list) -> list:
                 "   - Use the save_issue tool for each\n"
                 "   - Title: clear, concise action item\n"
                 "   - Description: full context from the call, owner, deadline\n"
+                + (f"   - Team: '{LINEAR_TEAM}' (REQUIRED for every issue)\n"
+                   if LINEAR_TEAM else "")
                 + (f"   - Project: '{LINEAR_PROJECT}'\n"
-                   f"   IMPORTANT: Always create issues in the '{LINEAR_PROJECT}' project.\n"
                    if LINEAR_PROJECT else "")
                 + "   IMPORTANT: Create AT MOST 2 Linear issues — only for the top priorities.\n"
                 "4. Return:\n"
