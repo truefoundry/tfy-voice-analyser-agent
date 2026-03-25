@@ -65,7 +65,7 @@ def build_subagents(linear_tools: list) -> list:
         },
         {
             "name": "action-items-creator",
-            "description": "Extract action items from a call transcript and create Linear issues for each one",
+            "description": "Extract action items from a call transcript and create up to 2 Linear issues for the top priorities",
             "model": llm("bedrock/global.anthropic.claude-sonnet-4-6"),
             "tools": linear_tools,
             "system_prompt": (
@@ -74,14 +74,14 @@ def build_subagents(linear_tools: list) -> list:
                 "Given a call transcript:\n"
                 "1. Extract all action items — who committed to what, with deadlines if mentioned\n"
                 "2. Extract open questions and decisions made\n"
-                "3. Pick the TOP 2 most important action items and create Linear issues for them:\n"
+                "3. Pick up to 2 of the most important action items and create Linear issues for them:\n"
                 "   - Use the save_issue tool for each\n"
                 "   - Title: clear, concise action item\n"
                 "   - Description: full context from the call, owner, deadline\n"
                 + (f"   - Project: '{LINEAR_PROJECT}'\n"
                    f"   IMPORTANT: Always create issues in the '{LINEAR_PROJECT}' project.\n"
                    if LINEAR_PROJECT else "")
-                + "   IMPORTANT: Create EXACTLY 2 Linear issues — no more.\n"
+                + "   IMPORTANT: Create AT MOST 2 Linear issues — only for the top priorities.\n"
                 "4. Return:\n"
                 "   - Full list of all action items extracted\n"
                 "   - The 2 Linear issue links (URL from the save_issue response)\n\n"
