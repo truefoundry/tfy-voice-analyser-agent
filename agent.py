@@ -67,7 +67,7 @@ def build_subagents(linear_tools: list) -> list:
         {
             "name": "action-items-creator",
             "description": "Extract action items from a call transcript and create up to 2 Linear issues for the top priorities",
-            "model": llm("bedrock/global.anthropic.claude-sonnet-4-6"),
+            "model": llm("bedrock/global.anthropic.claude-haiku-4-5-20251001-v1-0"),
             "tools": linear_tools,
             "system_prompt": (
                 "You are an expert at extracting actionable items from conversations "
@@ -78,7 +78,7 @@ def build_subagents(linear_tools: list) -> list:
                 "3. Pick up to 2 of the most important action items and create Linear issues for them:\n"
                 "   - Use the save_issue tool for each\n"
                 "   - Title: clear, concise action item\n"
-                "   - Description: full context from the call, owner, deadline\n"
+                "   - Description: use proper markdown with real line breaks (not literal \\n). Use headers, bullet points, and paragraphs.\n"
                 + (f"   - Team: '{LINEAR_TEAM}' (REQUIRED for every issue)\n"
                    if LINEAR_TEAM else "")
                 + (f"   - Project: '{LINEAR_PROJECT}'\n"
