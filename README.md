@@ -16,8 +16,9 @@ Analyze voice call transcripts with 3 AI sub-agents running in parallel — each
         ┌────────────┼────────────┐
         │            │            │
    Sentiment    Action Items     Coach
-  (Gemini 3    (Claude 4.6 +   (GPT-5
-   Flash)       Linear MCP)     Mini)
+  (Gemini 3    (Claude Haiku   (GPT-5
+   Flash)       4.5 + Linear    Mini)
+                  MCP)
         │            │            │
         └────────────┼────────────┘
                      │
@@ -31,7 +32,7 @@ Analyze voice call transcripts with 3 AI sub-agents running in parallel — each
 ## Quick Start
 
 ```bash
-git clone <repo-url> && cd tfy-voice-analyser-agent
+git clone https://github.com/truefoundry/tfy-voice-analyser-agent.git && cd tfy-voice-analyser-agent
 uv sync
 cp .env.example .env
 ```
@@ -43,7 +44,10 @@ Fill in your credentials in `.env`:
 TFY_GATEWAY_URL=https://gateway.truefoundry.ai
 TFY_API_KEY=tfy-...
 
-# Linear project name (optional)
+# Linear team name (required for issue creation)
+LINEAR_TEAM=
+
+# Linear project name (optional — if set, issues are created in this project)
 LINEAR_PROJECT=
 
 # TFY MCP Gateway for Linear (optional — skips issue creation if not set)
@@ -51,7 +55,20 @@ TFY_MCP_GATEWAY_URL=https://gateway.truefoundry.ai/your-org/mcp/linear/server
 TFY_MCP_GATEWAY_KEY=tfy-...
 ```
 
-Start the server:
+### Setting up Linear via TFY MCP Gateway (optional)
+
+To enable automatic Linear issue creation, connect the [Linear MCP server](https://linear.app) to your TrueFoundry MCP Gateway:
+
+1. Go to your TrueFoundry dashboard and create an **MCP Gateway** endpoint
+2. Connect the **Linear** MCP server to it (this requires a Linear API key with issue-creation permissions)
+3. Copy the MCP Gateway URL and key into your `.env`:
+   - `TFY_MCP_GATEWAY_URL` — the full URL to your Linear MCP endpoint (e.g. `https://gateway.truefoundry.ai/your-org/mcp/linear/server`)
+   - `TFY_MCP_GATEWAY_KEY` — your TFY MCP Gateway API key
+4. Set `LINEAR_TEAM` to your Linear team name (required for issue creation)
+
+If these are not configured, the agent will still analyze calls — it just won't create Linear tickets.
+
+### Start the server
 
 ```bash
 langgraph dev --port 8888
@@ -63,6 +80,10 @@ This gives you:
 - **Studio**: https://smith.langchain.com/studio/?baseUrl=http://localhost:8888
 - **Docs**: http://localhost:8888/docs
 
+### Try it out
+
+Open [LangGraph Studio](https://smith.langchain.com/studio/?baseUrl=http://localhost:8888) and send any message — the agent will automatically load the included `sample_transcript.txt` (a ~8 min support call) and run the full analysis pipeline.
+
 ---
 
 ## What It Does
@@ -70,7 +91,7 @@ This gives you:
 1. Loads a sample support call transcript (~8 min call)
 2. Spawns **3 sub-agents in parallel**, each on a different LLM via Gateway:
    - **Sentiment Analyzer** (Gemini Flash) — tone, emotional arc, CSAT score
-   - **Action Items Creator** (Claude Sonnet) — extracts items + creates Linear issues via MCP
+   - **Action Items Creator** (Claude Haiku) — extracts items + creates Linear issues via MCP
    - **Call Coach** (GPT-5 Mini) — strengths, improvements, suggested phrases
 3. Combines outputs into a single report
 4. Returns the report with links to created Linear issues
@@ -82,9 +103,10 @@ This gives you:
 Model names in `agent.py` must match what's registered on your TFY AI Gateway. Update these to match your setup:
 
 ```python
-llm("flash/gemini-3-flash")                        # sentiment
-llm("bedrock/global.anthropic.claude-sonnet-4-6")   # action items + planner
-llm("openai-main/gpt-5-mini")                       # coaching
+llm("flash/gemini-3-flash")                                   # sentiment
+llm("bedrock/global.anthropic.claude-haiku-4-5-20251001-v1-0") # action items
+llm("bedrock/global.anthropic.claude-sonnet-4-6")              # planner
+llm("openai-main/gpt-5-mini")                                  # coaching
 ```
 
 ---
