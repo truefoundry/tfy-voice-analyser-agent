@@ -14,10 +14,10 @@ load_dotenv()
 
 GATEWAY_URL = os.environ["TFY_GATEWAY_URL"]
 GATEWAY_KEY = os.environ["TFY_API_KEY"]
-MCP_URL = os.environ.get("TFY_MCP_GATEWAY_URL", "")
-MCP_KEY = os.environ.get("TFY_MCP_GATEWAY_KEY", "")
+LINEAR_MCP_GATEWAY_URL = os.environ.get("LINEAR_MCP_GATEWAY_URL", "")
 LINEAR_PROJECT = os.environ.get("LINEAR_PROJECT", "")
 LINEAR_TEAM = os.environ.get("LINEAR_TEAM", "")
+MCP_GATEWAY_API_KEY = os.environ.get("MCP_GATEWAY_API_KEY", "")
 
 TRANSCRIPT_PATH = Path(__file__).parent / "sample_transcript.txt"
 
@@ -35,13 +35,13 @@ def load_transcript() -> str:
 # -- MCP client (shared) ---------------------------------------------------
 
 async def get_linear_tools() -> list:
-    if not MCP_URL:
+    if not LINEAR_MCP_GATEWAY_URL:
         return []
     mcp = MultiServerMCPClient({
         "linear": {
-            "url": MCP_URL,
+            "url": LINEAR_MCP_GATEWAY_URL,
             "transport": "streamable_http",
-            "headers": {"Authorization": f"Bearer {MCP_KEY}"},
+            "headers": {"Authorization": f"Bearer {MCP_GATEWAY_API_KEY}"},
         },
     })
     return await mcp.get_tools()

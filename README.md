@@ -51,8 +51,8 @@ LINEAR_TEAM=
 LINEAR_PROJECT=
 
 # TFY MCP Gateway for Linear (optional — skips issue creation if not set)
-TFY_MCP_GATEWAY_URL=https://gateway.truefoundry.ai/your-org/mcp/linear/server
-TFY_MCP_GATEWAY_KEY=tfy-...
+LINEAR_MCP_GATEWAY_URL=https://gateway.truefoundry.ai/your-org/mcp/linear/server
+MCP_GATEWAY_API_KEY=tfy-...
 ```
 
 ### Setting up Linear via TFY MCP Gateway (optional)
@@ -62,8 +62,8 @@ To enable automatic Linear issue creation, connect the [Linear MCP server](https
 1. Go to your TrueFoundry dashboard and create an **MCP Gateway** endpoint
 2. Connect the **Linear** MCP server to it (this requires a Linear API key with issue-creation permissions)
 3. Copy the MCP Gateway URL and key into your `.env`:
-   - `TFY_MCP_GATEWAY_URL` — the full URL to your Linear MCP endpoint (e.g. `https://gateway.truefoundry.ai/your-org/mcp/linear/server`)
-   - `TFY_MCP_GATEWAY_KEY` — your TFY MCP Gateway API key
+   - `LINEAR_MCP_GATEWAY_URL` — the full URL to your Linear MCP endpoint (e.g. `https://gateway.truefoundry.ai/your-org/mcp/linear/server`)
+   - `MCP_GATEWAY_API_KEY` - API key to access MCP gateway URL
 4. Set `LINEAR_TEAM` to your Linear team name (required for issue creation)
 
 If these are not configured, the agent will still analyze calls — it just won't create Linear tickets.
